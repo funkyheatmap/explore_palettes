@@ -1,13 +1,18 @@
 # Explore palettes
 
-    ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-    ✔ ggplot2 3.4.1     ✔ purrr   1.0.1
-    ✔ tibble  3.2.1     ✔ dplyr   1.1.1
-    ✔ tidyr   1.3.0     ✔ stringr 1.5.0
-    ✔ readr   2.1.4     ✔ forcats 1.0.0
-    ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ✖ dplyr::filter() masks stats::filter()
-    ✖ dplyr::lag()    masks stats::lag()
+``` r
+library(tidyverse)
+library(ggplot2)
+
+smear <- function(cols) {
+  grDevices::colorRampPalette(cols)(101)
+}
+
+knitr::opts_chunk$set(
+  fig.width = 3.4,
+  fig.height = 4.7
+)
+```
 
 Create objects
 

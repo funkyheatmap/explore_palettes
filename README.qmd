@@ -3,7 +3,7 @@ title: Explore palettes
 format: gfm
 ---
 
-```{r echo=FALSE}
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(ggplot2)
 
