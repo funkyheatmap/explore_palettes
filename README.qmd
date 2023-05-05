@@ -73,11 +73,16 @@ Construct background rects
 
 ```{r}
 row_rects <- tibble(
-  xmin = min(df2$xmin) - 1,
+  xmin = min(df2$xmin) - 2,
   xmax = max(df2$xmax),
   y = seq(0, 11, by = 2.2),
   ymin = y - .55,
   ymax = y + .55
+)
+row_text <- tibble(
+  x = -1,
+  y = unique(df$y),
+  label = paste0("Row ", seq(10, 0))
 )
 ```
 
@@ -91,11 +96,12 @@ df3 <- df2 %>%
     col_val = light_palettes[[palette[[1]]]][col_ix]
   )
 
-gl <- 
-  ggplot(df3, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax)) +
-  geom_rect(aes(fill = light_alt), row_rects) +
+gl <-
+  ggplot(df3) +
+  geom_rect(aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = light_alt), row_rects) +
+  geom_text(aes(x = x, y = y, label = label), row_text, hjust = 0, color = dark_alt) +
   funkyheatmap::geom_rounded_rect(
-    aes(radius = corner_size, fill = col_val),
+    aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, radius = corner_size, fill = col_val),
     size = .5, colour = dark_alt
   ) +
   coord_equal() +
@@ -117,10 +123,11 @@ df3 <- df2 %>%
   )
 
 gd <- 
-  ggplot(df3, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax)) +
-  geom_rect(aes(fill = dark_alt), row_rects) +
+  ggplot(df3) +
+  geom_rect(aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = dark_alt), row_rects) +
+  geom_text(aes(x = x, y = y, label = label), row_text, hjust = 0, color = light_alt) +
   funkyheatmap::geom_rounded_rect(
-    aes(radius = corner_size, fill = col_val),
+    aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, radius = corner_size, fill = col_val),
     size = .5, colour = light_alt
   ) +
   coord_equal() +
@@ -142,10 +149,11 @@ df3 <- df2 %>%
   )
 
 gl2 <- 
-  ggplot(df3, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax)) +
-  geom_rect(aes(fill = light_alt), row_rects) +
+  ggplot(df3) +
+  geom_rect(aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = light_alt), row_rects) +
+  geom_text(aes(x = x, y = y, label = label), row_text, hjust = 0, color = dark_alt) +
   funkyheatmap::geom_rounded_rect(
-    aes(radius = corner_size, fill = col_val),
+    aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, radius = corner_size, fill = col_val),
     size = .5, colour = dark_alt
   ) +
   coord_equal() +
@@ -174,10 +182,11 @@ df3 <- df2 %>%
   )
 
 gd2 <-
-  ggplot(df3, aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax)) +
-  geom_rect(aes(fill = dark_alt), row_rects) +
+  ggplot(df3) +
+  geom_rect(aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, fill = dark_alt), row_rects) +
+  geom_text(aes(x = x, y = y, label = label), row_text, hjust = 0, color = light_alt) +
   funkyheatmap::geom_rounded_rect(
-    aes(radius = corner_size, fill = col_val),
+    aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax, radius = corner_size, fill = col_val),
     size = .5, colour = light_alt
   ) +
   coord_equal() +
